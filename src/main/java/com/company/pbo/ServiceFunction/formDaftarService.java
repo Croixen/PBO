@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.JTableHeader;
@@ -23,6 +24,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.table.TableRowSorter;
 
 
@@ -385,7 +388,7 @@ public class formDaftarService extends javax.swing.JFrame {
                                 .addGap(17, 17, 17)
                                 .addComponent(btnConfirmEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnConfirmBaru, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnConfirmBaru, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -467,7 +470,7 @@ public class formDaftarService extends javax.swing.JFrame {
 
         jMenuBar1.setForeground(new java.awt.Color(51, 51, 51));
 
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu1.setForeground(new java.awt.Color(0, 0, 0));
         jMenu1.setText("File");
 
         menuReport.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -537,9 +540,26 @@ public class formDaftarService extends javax.swing.JFrame {
         TableColumn ColumnSet; 
         ServiceTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         JTableHeader THeader = ServiceTable.getTableHeader();
-        THeader.setBackground(Color.WHITE);
-        THeader.setForeground(Color.black);
+        THeader.setBackground(new Color(102, 102, 102));
+        THeader.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        THeader.setForeground(Color.white);
         THeader.setFont(new Font("Seorge UI", Font.PLAIN, 18));
+        
+        for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+        if ("Nimbus".equals(info.getName())) {
+        try {
+            // Set Nimbus look and feel
+            UIManager.setLookAndFeel(info.getClassName());
+            // Set the separator color in the table header
+            UIManager.put("THeader.separatorColor", Color.BLACK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        break;
+    }
+}
+        
+        
         ((DefaultTableCellRenderer)THeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(JLabel.CENTER);
@@ -635,6 +655,8 @@ public class formDaftarService extends javax.swing.JFrame {
                 }    
             }
             ServiceTable.setModel(filler);
+            ServiceTable.getTableHeader().setResizingAllowed(false);
+            ServiceTable.setDefaultEditor(Object.class, null);
             setTableHeader();
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, "Error Fetching");
@@ -693,6 +715,7 @@ public class formDaftarService extends javax.swing.JFrame {
        
         btnConfirmBaru.setVisible(true);
         cboProgress.removeItemAt(3);
+        cboProgress.removeItemAt(2);
         toogle = true;
         btnCancel.setVisible(true);
         btnEdit.setVisible(false);
@@ -734,11 +757,13 @@ public class formDaftarService extends javax.swing.JFrame {
                 Baru.Save(txtSKU.getText(), txtBrand.getText(), txtNamaPelanggan.getText(), txtTelepon.getText(), TanggalMasuk.getDate(), CboStatus.getSelectedItem().toString(), cboPetugas.getSelectedItem().toString().substring(5), cboProgress.getSelectedItem().toString());
                 Baru.stat.executeUpdate(Baru.sql);
                 toogle = false;
-               
                 clear();
+                btnConfirmBaru.setVisible(false);
                 btnCancel.setVisible(false);
+                btnBaru.setVisible(true);
                 btnEdit.setVisible(true);
                 IsiTabel();
+                IsiCboProgress();
             }catch(Exception e){
                 System.out.println(e.getMessage());
                 JOptionPane.showMessageDialog(rootPane, "Gagal melakukan update terhadap database");
@@ -834,18 +859,18 @@ public class formDaftarService extends javax.swing.JFrame {
         btnEdit.setVisible(false);
         btnConfirmBaru.setVisible(false);
         btnHapus.setVisible(false);
+        IsiCboProgress();
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         toogle = false;
-        
-       
         btnConfirmBaru.setVisible(false);
         btnConfirmEdit.setVisible(false);
         btnEdit.setVisible(true);
         btnBaru.setVisible(true);
         btnCancel.setVisible(false);
+        IsiCboProgress();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void txtBrandKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBrandKeyTyped
@@ -880,7 +905,7 @@ public class formDaftarService extends javax.swing.JFrame {
             evt.consume();
             JOptionPane.showMessageDialog(rootPane, "Aksi ini hanya dapat dilakukan jika tombol edit atau new bewarna hijau");
         }else{
-             if(txtTelepon.getText().length() > 15){
+             if(txtTelepon.getText().length() > 13){
                 evt.consume();
                 JOptionPane.showMessageDialog(rootPane, "No telepon dari laptop tidak dapat melebihi dari 15 digit");
             }

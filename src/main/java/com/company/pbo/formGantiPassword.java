@@ -87,6 +87,7 @@ public class formGantiPassword extends javax.swing.JFrame {
         });
 
         btnKonfirmasi.setBackground(new java.awt.Color(0, 153, 51));
+        btnKonfirmasi.setForeground(new java.awt.Color(255, 255, 255));
         btnKonfirmasi.setText("Konfirmasi");
         btnKonfirmasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +96,7 @@ public class formGantiPassword extends javax.swing.JFrame {
         });
 
         btnBatal.setBackground(new java.awt.Color(204, 0, 0));
+        btnBatal.setForeground(new java.awt.Color(255, 255, 255));
         btnBatal.setText("Batal");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

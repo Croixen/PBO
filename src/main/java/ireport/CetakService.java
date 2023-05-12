@@ -7,6 +7,7 @@ package ireport;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -49,10 +50,15 @@ public class CetakService extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnCetak = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+        });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
             }
         });
 
@@ -199,7 +205,7 @@ public class CetakService extends javax.swing.JFrame {
                 parameters.put("TanggalDari", cetak.TanggalDari);
                 parameters.put("TanggalHingga", cetak.TanggalHingga);
 
-                String reportFilePath = "D:\\Workspace\\eclipse worlspace\\PBO\\src\\main\\java\\ireport\\ReportService.jasper";
+                String reportFilePath = System.getProperty("user.dir")+"\\src\\main\\java\\ireport\\ReportService.jasper";
                 JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFilePath);
                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, cetak.conn);
                 JasperViewer.viewReport(jasperPrint, false);
@@ -220,6 +226,11 @@ public class CetakService extends javax.swing.JFrame {
         int y = (toMid.height - this.getHeight())/2;
         this.setLocation(x, y);
     }//GEN-LAST:event_formWindowActivated
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ESCAPE)this.dispose();
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments

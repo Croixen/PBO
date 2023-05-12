@@ -90,6 +90,7 @@ public class formAccountInfo extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(204, 0, 0));
         jButton1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("LOG OUT");
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +101,7 @@ public class formAccountInfo extends javax.swing.JFrame {
 
         Kembali.setBackground(new java.awt.Color(0, 204, 0));
         Kembali.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        Kembali.setForeground(new java.awt.Color(255, 255, 255));
         Kembali.setText("Kembali");
         Kembali.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         Kembali.addActionListener(new java.awt.event.ActionListener() {
@@ -285,7 +287,7 @@ public class formAccountInfo extends javax.swing.JFrame {
         if(ID == 1001){
             JOptionPane.showMessageDialog(null, "Akun Admin tidak diperbolehkan untuk mengganti nama", "Warning", JOptionPane.WARNING_MESSAGE);
         }else{
-            forrmGantiUsername GU = new forrmGantiUsername(ID);
+            formGantiUsername GU = new formGantiUsername(ID);
             GU.setVisible(true);
             this.dispose();
         }

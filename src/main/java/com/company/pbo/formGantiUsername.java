@@ -17,13 +17,13 @@ import java.sql.ResultSet;
  *
  * @author Mihaly
  */
-public class forrmGantiUsername extends javax.swing.JFrame {
+public class formGantiUsername extends javax.swing.JFrame {
     int ID;
     String Username;
     /**
      * Creates new form GantiPassword
      */
-    public forrmGantiUsername(int ID) {
+    public formGantiUsername(int ID) {
         initComponents();
         this.ID = ID;
         MaxPassWarn.setVisible(false);
@@ -75,7 +75,6 @@ public class forrmGantiUsername extends javax.swing.JFrame {
         jLabel2.setText("USERNAME:");
 
         CurPass.setBackground(new java.awt.Color(204, 204, 204));
-        CurPass.setForeground(new java.awt.Color(0, 0, 0));
         CurPass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CurPassKeyPressed(evt);
@@ -86,6 +85,7 @@ public class forrmGantiUsername extends javax.swing.JFrame {
         });
 
         btnKonfirmasi.setBackground(new java.awt.Color(0, 153, 51));
+        btnKonfirmasi.setForeground(new java.awt.Color(255, 255, 255));
         btnKonfirmasi.setText("Konfirmasi");
         btnKonfirmasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +94,7 @@ public class forrmGantiUsername extends javax.swing.JFrame {
         });
 
         btnBatal.setBackground(new java.awt.Color(204, 0, 0));
+        btnBatal.setForeground(new java.awt.Color(255, 255, 255));
         btnBatal.setText("Batal");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +110,6 @@ public class forrmGantiUsername extends javax.swing.JFrame {
 
         NewUsername.setBackground(new java.awt.Color(204, 204, 204));
         NewUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        NewUsername.setForeground(new java.awt.Color(0, 0, 0));
         NewUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 NewUsernameKeyPressed(evt);
@@ -285,14 +285,46 @@ public class forrmGantiUsername extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(forrmGantiUsername.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formGantiUsername.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(forrmGantiUsername.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formGantiUsername.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(forrmGantiUsername.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formGantiUsername.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(forrmGantiUsername.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formGantiUsername.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
         //</editor-fold>
 
         //</editor-fold>

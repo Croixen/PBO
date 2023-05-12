@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;    
 import java.sql.ResultSet;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.JTableHeader;
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.table.TableRowSorter;
 
 
@@ -132,7 +134,6 @@ public class formService extends javax.swing.JFrame {
         if (ServiceTable.getColumnModel().getColumnCount() > 0) {
             ServiceTable.getColumnModel().getColumn(0).setResizable(false);
             ServiceTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-            ServiceTable.getColumnModel().getColumn(1).setResizable(false);
             ServiceTable.getColumnModel().getColumn(2).setResizable(false);
             ServiceTable.getColumnModel().getColumn(3).setResizable(false);
             ServiceTable.getColumnModel().getColumn(4).setResizable(false);
@@ -326,13 +327,27 @@ public class formService extends javax.swing.JFrame {
     }
     
     private void setTableHeader(){
-        TableColumn ColumnSet; 
+       TableColumn ColumnSet; 
         ServiceTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         JTableHeader THeader = ServiceTable.getTableHeader();
-        THeader.setBackground(Color.WHITE);
-        THeader.setForeground(Color.black);
+        THeader.setBackground(new Color(102, 102, 102));
+        THeader.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        THeader.setForeground(Color.white);
         THeader.setFont(new Font("Seorge UI", Font.PLAIN, 18));
-        ((DefaultTableCellRenderer)THeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        
+        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+        if ("Nimbus".equals(info.getName())) {
+        try {
+            // Set Nimbus look and feel
+            UIManager.setLookAndFeel(info.getClassName());
+            // Set the separator color in the table header
+            UIManager.put("THeader.separatorColor", Color.BLACK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        break;
+    }
+}
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(JLabel.CENTER);
         ServiceTable.getColumnModel().getColumn(0).setCellRenderer(renderer);
@@ -413,6 +428,8 @@ public class formService extends javax.swing.JFrame {
                     
             }
             ServiceTable.setModel(filler);
+            ServiceTable.getTableHeader().setResizingAllowed(false);
+            ServiceTable.setDefaultEditor(Object.class, null);
             setTableHeader();
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, "Error Fetching");
@@ -437,12 +454,8 @@ public class formService extends javax.swing.JFrame {
     private void ServiceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ServiceTableMouseClicked
         // TODO add your handling code here:
         int baris = ServiceTable.getSelectedRow();
-        
-        
-        CboStatus.setSelectedItem(ServiceTable.getValueAt(baris, 6).toString());
-        cboProgress.setSelectedItem(ServiceTable.getValueAt(baris, 9).toString());
-        
-        
+        CboStatus.setSelectedItem(ServiceTable.getValueAt(baris, 5).toString());
+        cboProgress.setSelectedItem(ServiceTable.getValueAt(baris, 7).toString());
     }//GEN-LAST:event_ServiceTableMouseClicked
 
     private void btnConfirmEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmEditActionPerformed
