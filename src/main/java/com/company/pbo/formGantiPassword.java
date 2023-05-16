@@ -195,7 +195,6 @@ public class formGantiPassword extends javax.swing.JFrame {
             NewPass.requestFocus();
         }else{
             try{
-                
                 ResultSet rs = newPW.stat.executeQuery("SELECT `ID`, `Password` FROM `akun` WHERE `Password` = '"+String.valueOf(CurPass.getPassword())+"' AND ID = '"+ID+"'");
                 if(rs.next()){
                     newPW.gantiPassword(ID, String.valueOf(NewPass.getPassword()));

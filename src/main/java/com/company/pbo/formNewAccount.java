@@ -53,6 +53,7 @@ public class formNewAccount extends javax.swing.JFrame {
         btnConfirm = new javax.swing.JButton();
         usernametoolong = new javax.swing.JLabel();
         passwordtoolong = new javax.swing.JLabel();
+        btnBatal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Evoker Service");
@@ -156,8 +157,8 @@ public class formNewAccount extends javax.swing.JFrame {
 
         btnConfirm.setBackground(new java.awt.Color(0, 153, 51));
         btnConfirm.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnConfirm.setForeground(new java.awt.Color(0, 0, 0));
-        btnConfirm.setText("CONFIRM");
+        btnConfirm.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfirm.setText("KONFIRMASI");
         btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmActionPerformed(evt);
@@ -168,7 +169,17 @@ public class formNewAccount extends javax.swing.JFrame {
         usernametoolong.setText("*Panjang username maksimal adalah 5-50 huruf");
 
         passwordtoolong.setForeground(new java.awt.Color(255, 51, 0));
-        passwordtoolong.setText("*Panjang Password maksimal hanya 16 huruf");
+        passwordtoolong.setText("*Panjang Password hanya 6-16 huruf");
+
+        btnBatal.setBackground(new java.awt.Color(204, 0, 0));
+        btnBatal.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnBatal.setForeground(new java.awt.Color(255, 255, 255));
+        btnBatal.setText("BATAL");
+        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBatalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BACKGROUNDLayout = new javax.swing.GroupLayout(BACKGROUND);
         BACKGROUND.setLayout(BACKGROUNDLayout);
@@ -181,10 +192,14 @@ public class formNewAccount extends javax.swing.JFrame {
                     .addGroup(BACKGROUNDLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(BACKGROUNDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(BACKGROUNDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(BACKGROUNDLayout.createSequentialGroup()
+                                .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(BACKGROUNDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(BACKGROUNDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(usernametoolong)
@@ -207,7 +222,9 @@ public class formNewAccount extends javax.swing.JFrame {
                     .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordtoolong))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(BACKGROUNDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -306,7 +323,7 @@ public class formNewAccount extends javax.swing.JFrame {
     private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
         // TODO add your handling code here:
         
-        if(txtUsername.getText().length() > 49 || txtUsername.getText().length() < 15){
+        if(txtUsername.getText().length() > 49 || txtUsername.getText().length() < 5){
             usernametoolong.setVisible(true);
         }else{
             usernametoolong.setVisible(false);
@@ -321,7 +338,6 @@ public class formNewAccount extends javax.swing.JFrame {
        
         
         if(PasswordField.getPassword().length > 15 || PasswordField.getPassword().length < 6){
-            evt.consume();
             passwordtoolong.setVisible(true);
         }else{
             passwordtoolong.setVisible(false);
@@ -331,6 +347,13 @@ public class formNewAccount extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_PasswordFieldKeyTyped
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        // TODO add your handling code here:
+        formMainMenu MainMenu = new formMainMenu(Username, ID);
+        MainMenu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBatalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,6 +394,7 @@ public class formNewAccount extends javax.swing.JFrame {
     private javax.swing.JPanel BACKGROUND;
     private javax.swing.JPanel BANNER;
     private javax.swing.JPasswordField PasswordField;
+    private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

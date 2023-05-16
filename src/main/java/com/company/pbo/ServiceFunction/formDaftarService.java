@@ -5,7 +5,7 @@
 package com.company.pbo.ServiceFunction;
 
 import com.company.pbo.DBandConnect.clsDaftarList;
-import ireport.CetakService;
+import ireport.frmCetakService;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -545,19 +545,7 @@ public class formDaftarService extends javax.swing.JFrame {
         THeader.setForeground(Color.white);
         THeader.setFont(new Font("Seorge UI", Font.PLAIN, 18));
         
-        for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-        if ("Nimbus".equals(info.getName())) {
-        try {
-            // Set Nimbus look and feel
-            UIManager.setLookAndFeel(info.getClassName());
-            // Set the separator color in the table header
-            UIManager.put("THeader.separatorColor", Color.BLACK);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        break;
-    }
-}
+        
         
         
         ((DefaultTableCellRenderer)THeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -978,7 +966,7 @@ public class formDaftarService extends javax.swing.JFrame {
 
     private void menuReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportActionPerformed
         // TODO add your handling code here:
-        CetakService cetak = new CetakService();
+        frmCetakService cetak = new frmCetakService();
         cetak.setVisible(true);
     }//GEN-LAST:event_menuReportActionPerformed
 

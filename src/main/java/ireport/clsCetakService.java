@@ -13,15 +13,11 @@ import java.time.LocalDate;
  * @author Mihaly
  */
 public class clsCetakService extends DBCon{
-    /*LocalDate TanggalDari;
-    LocalDate TanggalHingga;*/
+   
     String TanggalDari;
     String TanggalHingga;
     
-    /*void setDate(LocalDate TanggalDari, LocalDate TanggalHingga){
-        this.TanggalDari = TanggalDari;
-        this.TanggalHingga = TanggalHingga;
-    }*/
+   
      void setDate(String TanggalDari, String TanggalHingga){
         this.TanggalDari = TanggalDari;
         this.TanggalHingga = TanggalHingga;

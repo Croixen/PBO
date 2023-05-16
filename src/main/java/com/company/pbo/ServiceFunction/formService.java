@@ -334,20 +334,6 @@ public class formService extends javax.swing.JFrame {
         THeader.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         THeader.setForeground(Color.white);
         THeader.setFont(new Font("Seorge UI", Font.PLAIN, 18));
-        
-        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-        if ("Nimbus".equals(info.getName())) {
-        try {
-            // Set Nimbus look and feel
-            UIManager.setLookAndFeel(info.getClassName());
-            // Set the separator color in the table header
-            UIManager.put("THeader.separatorColor", Color.BLACK);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        break;
-    }
-}
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(JLabel.CENTER);
         ServiceTable.getColumnModel().getColumn(0).setCellRenderer(renderer);
